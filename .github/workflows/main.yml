@@ -1,0 +1,35 @@
+name: Windows - LiteManager
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 9999
+
+    steps:
+      - name: PowerShell Execution Policy Set Kora
+        run: Set-ExecutionPolicy RemoteSigned -Scope Process -Force
+        shell: powershell
+
+      - name: Essentials Download kora (wget diye)
+        run: |
+          echo "wget diye file download kora hocche..."
+          curl -LJO "https://gitlab.com/chamod12/lm_win-11_github_rdp/-/raw/main/Downloads.bat"
+          echo "Download shesh, bat file run kora hocche..."
+          cmd /c Downloads.bat
+        shell: powershell
+
+      - name: LiteManager e Connect kora
+        run: |
+          echo "LiteManager e connect kora hocche..."
+          cmd /c show.bat
+        shell: cmd
+
+      - name: Time Counter cholano
+        run: |
+          echo "Time counter cholano hocche..."
+          cmd /c loop.bat
+        shell: cmd
